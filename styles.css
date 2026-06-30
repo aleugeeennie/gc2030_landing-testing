@@ -59,7 +59,7 @@ button{cursor:pointer}
   border-bottom:1px solid var(--line);
   padding-top:12px;padding-bottom:12px;
 }
-.brand img{height:54px;width:auto;max-width:190px;object-fit:contain}
+.brand img{height:74px;width:auto;max-width:250px;object-fit:contain;filter:brightness(0) invert(1)}
 .nav-menu{display:flex;align-items:center;gap:22px;color:rgba(255,255,255,.82);font-size:14px;font-weight:700}
 .nav-menu a{transition:color .2s ease,transform .2s ease}
 .nav-menu a:hover{color:var(--white);transform:translateY(-1px)}
@@ -173,7 +173,7 @@ p{color:var(--muted);line-height:1.72;font-size:16px}
 .testimonial-track{display:flex;gap:16px;min-width:max-content;animation:scrollLeft 36s linear infinite}
 .testimonials-right .testimonial-track{animation:scrollRight 38s linear infinite}
 @keyframes scrollRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-.testimonial-card{width:430px;display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px;background:rgba(255,255,255,.06);box-shadow:none}
+.testimonial-card{width:430px;display:grid;grid-template-columns:1fr;gap:16px;padding:18px;background:rgba(255,255,255,.06);box-shadow:none}
 .testimonial-card img{width:64px;height:64px;border-radius:50%;object-fit:cover}
 .testimonial-card span{color:var(--orange-2);letter-spacing:.08em;font-size:13px}
 .testimonial-card p{margin:8px 0 14px;color:#fff;line-height:1.45;font-weight:600}
@@ -208,7 +208,7 @@ textarea{resize:vertical}
 @keyframes waPulse{70%{box-shadow:0 0 0 18px rgba(37,211,102,0),0 18px 40px rgba(0,0,0,.35)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 18px 40px rgba(0,0,0,.35)}}
 .footer{border-top:1px solid var(--line);background:#050607;padding:46px 0 22px}
 .footer-grid{display:grid;grid-template-columns:1.2fr .8fr 1fr;gap:28px;align-items:start}
-.footer-logo{height:56px;width:auto;max-width:210px;object-fit:contain;margin-bottom:14px}
+.footer-logo{height:56px;width:auto;max-width:210px;object-fit:contain;margin-bottom:14px;filter:brightness(0) invert(1)}
 .footer nav,.footer-contact{display:grid;gap:10px;color:var(--muted);font-weight:700}
 .footer a:hover{color:#fff}
 
@@ -260,7 +260,7 @@ textarea{resize:vertical}
   .logo-proof-card img{height:64px}
   .compact-footer-grid{display:grid;justify-items:center;text-align:center}
   .navbar{padding:12px 18px}
-  .brand img{height:46px;max-width:168px}
+  .brand img{height:58px;max-width:210px}
   .nav-toggle{display:flex}
   .nav-menu{position:fixed;top:72px;left:18px;right:18px;display:grid;gap:8px;background:rgba(7,9,11,.94);border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:var(--shadow);backdrop-filter:blur(18px);opacity:0;pointer-events:none;transform:translateY(-10px);transition:.22s ease}
   .nav-menu.open{opacity:1;pointer-events:auto;transform:none}
@@ -284,7 +284,7 @@ textarea{resize:vertical}
   .tab-list{display:grid;grid-template-columns:1fr 1fr}.tab-button{border-radius:14px;padding:12px 10px}
   .tab-panel{padding:18px}.tab-panel img{height:280px}
   .gallery-card{height:300px}
-  .testimonial-card{width:330px;grid-template-columns:52px 1fr}.testimonial-card img{width:52px;height:52px}
+  .testimonial-card{width:330px;grid-template-columns:1fr}
   .footer-bottom{display:grid;text-align:center}
   .whatsapp-float{right:16px;bottom:16px;width:54px;height:54px}
 }
