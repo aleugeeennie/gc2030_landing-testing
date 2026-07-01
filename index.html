@@ -1,488 +1,725 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Gestión Comercial 2030: promotoría efectiva, ejecución en punto de venta, app de monitoreo, reportes KPI y alcance nacional para marcas en autoservicio y retail." />
-  <title>Gestión Comercial 2030 | Promotoría efectiva para retail</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="assets/favicon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="assets/favicon.png" />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="site-bg" aria-hidden="true"></div>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+<style>
+:root{
+  --bg:#07090b;--bg-2:#0a0d10;--panel:#11161b;--panel-2:#151b21;
+  --text:#f7f7f2;--heading:#ffffff;--muted:#aeb6be;--muted-2:#76808a;
+  --line:rgba(255,255,255,.1);--line-2:rgba(255,255,255,.14);
+  --orange:#f07a00;--orange-2:#ff9b28;
+  --shadow:0 24px 80px rgba(0,0,0,.38);
+  --card-a:rgba(255,255,255,.075);--card-b:rgba(255,255,255,.035);
+  --chip-bg:rgba(255,255,255,.06);--chip-text:rgba(255,255,255,.82);
+  --glass:rgba(15,20,24,.55);--glass-strong:rgba(12,15,18,.72);--glass-line:rgba(255,255,255,.14);
+  --brand-filter:brightness(0) invert(1);
+  --input-bg:rgba(255,255,255,.08);
+  --hero-scrim:linear-gradient(180deg,rgba(7,9,11,.35),rgba(7,9,11,.5) 44%,rgba(7,9,11,.92));
+  --glow-1:rgba(240,122,0,.18);--glow-2:rgba(255,255,255,.08);
+  --nav-solid-bg:rgba(7,9,11,.78);--stats-bg:#0a0d10;--footer-bg:#050607;
+  --pill-active-bg:#ffffff;--pill-active-text:#080a0c;
+  --grid-line:rgba(255,255,255,.06);
+}
+html[data-theme="light"]{
+  --bg:#f4f1ea;--bg-2:#ece7dd;--panel:#ffffff;--panel-2:#faf8f2;
+  --text:#1a1d1f;--heading:#0f1214;--muted:#5a636b;--muted-2:#9aa0a6;
+  --line:rgba(20,25,30,.12);--line-2:rgba(20,25,30,.16);
+  --orange:#e06e00;--orange-2:#f07a00;
+  --shadow:0 24px 70px rgba(40,32,18,.14);
+  --card-a:rgba(255,255,255,.92);--card-b:rgba(250,247,240,.66);
+  --chip-bg:rgba(20,25,30,.05);--chip-text:rgba(20,25,30,.72);
+  --glass:rgba(255,255,255,.55);--glass-strong:rgba(255,255,255,.8);--glass-line:rgba(255,255,255,.6);
+  --brand-filter:none;
+  --input-bg:rgba(20,25,30,.04);
+  --hero-scrim:linear-gradient(180deg,rgba(8,10,12,.22),rgba(8,10,12,.36) 44%,rgba(8,10,12,.7));
+  --glow-1:rgba(240,122,0,.16);--glow-2:rgba(20,25,30,.05);
+  --nav-solid-bg:rgba(248,246,240,.85);--stats-bg:#efeae0;--footer-bg:#eae4d8;
+  --pill-active-bg:#14171a;--pill-active-text:#ffffff;
+  --grid-line:rgba(20,25,30,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html{background:var(--bg)!important;transition:background .4s ease}
+body{margin:0;font-family:'DM Sans',system-ui,sans-serif;background:var(--bg)!important;color:var(--text);overflow-x:hidden;transition:background .4s ease,color .4s ease}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+::selection{background:var(--orange);color:#fff}
+.gc-nav.solid{background:var(--nav-solid-bg)!important;backdrop-filter:blur(18px);box-shadow:0 16px 60px rgba(0,0,0,.2);border-bottom:1px solid var(--line);padding-top:12px!important;padding-bottom:12px!important}
+.gc-nav.solid .gc-navlink{color:var(--text)!important}
+.gc-nav.solid .gc-brand img{filter:var(--brand-filter)!important}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease;transition-delay:var(--delay,0s)}
+.reveal.in-view{opacity:1;transform:none}
+@keyframes pulse{70%{box-shadow:0 0 0 14px rgba(240,122,0,0)}100%{box-shadow:0 0 0 0 rgba(240,122,0,0)}}
+@keyframes floatSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes scrollLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scrollRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@keyframes kenburns{0%{transform:scale(1.04)}100%{transform:scale(1.14)}}
+@keyframes waPulse{70%{box-shadow:0 0 0 18px rgba(37,211,102,0),0 18px 40px rgba(0,0,0,.35)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 18px 40px rgba(0,0,0,.35)}}
+.gc-tcard{width:420px;flex:none;padding:22px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,var(--card-a),var(--card-b));box-shadow:var(--shadow)}
+.gc-tcard .stars{color:var(--orange);letter-spacing:.08em;font-size:13px}
+.gc-tcard p{margin:10px 0 14px;color:var(--heading);line-height:1.5;font-weight:600;font-size:15px}
+.gc-tcard strong{display:block;color:var(--heading);font-size:15px}
+.gc-tcard small{color:var(--muted);font-size:13px}
+@media (max-width:1040px){
+  .gc-split,.gc-value-grid,.gc-timeline,.gc-gallery{grid-template-columns:repeat(2,1fr)!important}
+  .gc-stats{grid-template-columns:repeat(2,1fr)!important}
+  .gc-logos{grid-template-columns:repeat(4,1fr)!important}
+  .gc-tab-panel{grid-template-columns:1fr!important}
+  .gc-contact,.gc-faq{grid-template-columns:1fr!important}
+}
+@media (max-width:820px){
+  .gc-menu{font-size:15px}
+  .gc-value-grid,.gc-timeline,.gc-gallery,.gc-stats,.gc-form-grid,.gc-footer-grid{grid-template-columns:1fr!important}
+  .gc-logos{grid-template-columns:repeat(3,1fr)!important}
+  .gc-split{grid-template-columns:1fr!important}
+  .gc-hero-grid{grid-template-columns:1fr!important}
+  .gc-hero-side{max-width:none!important;justify-self:stretch!important;flex-direction:row!important;flex-wrap:wrap;justify-content:flex-start!important}
+  .gc-tcard{width:320px}
+}
+@media (max-width:520px){
+  .gc-logos{grid-template-columns:repeat(2,1fr)!important}
+  .gc-tab-btn{width:100%}
+}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</helmet>
 
-  <header class="navbar" data-navbar>
-    <a href="#inicio" class="brand" aria-label="Ir al inicio">
-      <img src="assets/logo-gestion-comercial2030.svg" alt="Gestión Comercial 2030" />
-    </a>
-
-    <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="nav-menu" data-menu>
-      <a href="#problema">Anaquel</a>
-      <a href="#solucion">Solución</a>
-      <a href="#casos">Casos</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#faq">FAQ</a>
-      <a class="nav-cta" href="#contacto">Solicitar revisión comercial</a>
-    </nav>
-  </header>
-
-  <main id="inicio">
-    <section class="hero section-padding">
-      <div class="hero-grid container">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Ejecución comercial en punto de venta</p>
-          <h1>Tu posición de marca se gana en la tienda.</h1>
-          <p class="hero-subtitle">GC 2030 ejecuta un protocolo de trabajo, monitorea y defiende tu producto en anaquel con personal en campo, app propia, cobertura nacional y reportes de KPI's accionables.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contacto" data-case-cta="Revisión de negocio">Solicitar revisión comercial</a>
-            <a class="btn btn-secondary" href="#casos">Ver cómo operamos</a>
-          </div>
-          <!-- <div class="trust-strip" aria-label="Diferenciales de confianza">
-            <span>REPSE</span>
-            <span>App única</span>
-            <span>Alcance nacional</span>
-            <span>Reportes ejecutivos</span>
-          </div> -->
-        <!--   <div class="hero-mini-proof">
-            <div><strong>+3,000</strong><span>Puntos de venta cubiertos</span></div>
-            <div><strong>+200</strong><span>Colaboradores en campo</span></div>
-          </div> -->
-        </div>
-
-        <div class="hero-visual reveal" style="--delay:.12s">
-          <div class="visual-card main-photo hero-media">
-            <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1601599963565-b7ba29c8e3ff?auto=format&fit=crop&w=1400&q=80">
-              <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=2360b60cebec7a647f2995f80a11767c12290494&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
-            </video>
-            <div class="hero-video-overlay" aria-hidden="true"></div>
-            <div class="hero-media-badge">Ejecución real en retail</div>
-            <div class="hero-bottom-strip">
-              <span>BPV en tienda</span>
-              <span>Monitoreo geolocalizado</span>
-              <span>Fotos, rutas y KPIs por visita</span>
-            </div>
-          </div>
-          <div class="app-card floating-card">
-            <img src="https://gcomercial2030.com/wp-content/uploads/2024/07/App-2.png" alt="Aplicación móvil de GC2030 para monitoreo comercial" />
-          </div>
-  <!--         <div class="metric-card floating-card">
-            <strong>+3,000</strong>
-            <span>puntos de venta cubiertos</span>
-          </div> -->
-          <div class="signal-card floating-card">
-            <span class="pulse-dot"></span>
-            Evidencia en tiempo real
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="marquee-wrap" aria-label="Beneficios principales">
-      <div class="marquee marquee-left">
-        <div class="marquee-track">
-          <span>Producto fuera de bodega</span><span>Menos agotados</span><span>Inventario corregido</span><span>Reportes para dirección</span><span>Operación con REPSE</span><span>Monitoreo geolocalizado</span>
-          <span>Producto fuera de bodega</span><span>Menos agotados</span><span>Inventario corregido</span><span>Reportes para dirección</span><span>Operación con REPSE</span><span>Monitoreo geolocalizado</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="problema" class="section-padding problem-section">
-      <div class="container split-grid">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span></span> El problema en tienda</p>
-          <h2>En la bodega no se vende.</h2>
-        </div>
-        <div class="insight-card reveal" style="--delay:.1s">
-          <p class="big-insight">Si tu producto se queda en la bodega, la venta nunca llega.</p>
-          <p>GC 2030 garantiza que todo el inventario de producto se encuentre en el anaquel, y el excedente en exhibiciones adicionales.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="solucion" class="section-padding value-section">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow"><span></span> Solución 360</p>
-          <h2>Promotoría que genera ventas.</h2>
-          <p>Estructura de campo especializada y focalizada en el logro de los objetivos de la marca.</p>
-        </div>
-
-        <div class="value-grid">
-          <article class="value-card reveal">
-            <div class="card-icon">01</div>
-            <h3>Ejecución en tienda</h3>
-            <p>Personal de campo: vendedores punto de venta (VPV's), líderes de equipo (no supervisores), VPV's PLUS y grupos comando.</p>
-          </article>
-          <article class="value-card reveal" style="--delay:.08s">
-            <div class="card-icon">02</div>
-            <h3>Ajustes de inventarios</h3>
-            <p>Ejecución de los procesos internos de cada cadena de autoservicio para lograr el cuadre de inventarios físicos y teóricos a través de ajustes en el sistema, sin cargo para la marca. Reactivando la fórmula de resurtido.</p>
-          </article>
-          <article class="value-card reveal" style="--delay:.16s">
-            <div class="card-icon">03</div>
-            <h3>App</h3>
-            <p>Evidencias fotográficas y KPI's (anaquel, precios, exhibiciones adicionales, acciones de competencia, etc.).</p>
-          </article>
-          <article class="value-card reveal" style="--delay:.24s">
-            <div class="card-icon">04</div>
-            <h3>Blindaje legal y laboral</h3>
-            <p>Servicio con REPSE para operar marcas de terceros en punto de venta.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="stats-section">
-      <div class="container stats-grid reveal">
-        <div class="stat-item">
-          <strong data-count="3000">0</strong><span>puntos de venta</span>
-        </div>
-        <div class="stat-item">
-          <strong data-count="200">0</strong><span>colaboradores en campo</span>
-        </div>
-        <div class="stat-item">
-          <strong data-count="100">0</strong><span>alcance nacional</span>
-        </div>
-        <div class="stat-item">
-          <strong data-count="360">0</strong><span>solución 360</span>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section-padding social-proof-section">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow"><span></span> Socios comerciales</p>
-          <h2>Socios comerciales en canal moderno.</h2>
-          <p>Marcas que han confiado su ejecución en punto de venta a GC 2030 para garantizar la correcta presencia en el anaquel, exhibiciones adicionales sin costo, ajustes de inventarios y monitoreo a los KPI's fundamentales de cada marca.</p>
-        </div>
-
-        <div class="logo-proof-grid reveal" style="--delay:.1s" aria-label="Logos de socios comerciales de Gestión Comercial 2030">
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-delaviuda.png" alt="La Confitería Delaviuda"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-gabi.png" alt="Gaby"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-la-alianza.png" alt="La Alianza Carnicería"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-apsa.png" alt="APSA Alimentos Preformados"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-mabe.png" alt="Mabe"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-bonanza.png" alt="La Bonanza Avocados"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-maulec.png" alt="Pasteurizadora Maulec"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-ley.png" alt="Ley"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-superlife.png" alt="SuperLife"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-scrub-daddy.png" alt="Scrub Daddy"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-ciem.png" alt="CIEM Importación y Exportación"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-san-marcos.png" alt="San Marcos"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-akron.png" alt="Akron"></article>
-          <article class="logo-proof-card"><img loading="lazy" src="assets/logo-socio-hc-foods.png" alt="HC Foods"></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="casos" class="section-padding cases-section">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span></span> Casos comerciales</p>
-          <h2>Cinco problemas que afectan el desempeño de tu marca.</h2>
-          <p>Elige el problema que hoy te cuesta venta en tienda y solicita una revisión comercial con GC 2030.</p>
-        </div>
-
-        <div class="tabs reveal" data-tabs>
-          <div class="tab-list" role="tablist" aria-label="Casos comerciales GC2030">
-            <button class="tab-button active" type="button" role="tab" aria-selected="true" data-tab="entrada">Producto recién negociado</button>
-            <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="agotados">Diferencia de inventario</button>
-            <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="exhibicion">Anaquel</button>
-            <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="monitoreo">Evidencia</button>
-            <button class="tab-button" type="button" role="tab" aria-selected="false" data-tab="repse">REPSE</button>
-          </div>
-
-          <div class="tab-panels">
-            <article class="tab-panel active" data-panel="entrada">
-              <div>
-                <p class="tag">Producto recién negociado</p>
-                <h3>Tu orden de compra necesita manos en tienda.</h3>
-                <p>Un producto nuevo no tiene espacio en planograma y no es resurtible.</p>
-                <a class="micro-cta" href="#contacto" data-case-cta="Entrada a cadena">Revisar cobertura →</a>
-              </div>
-              <img loading="lazy" src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=80" alt="Anaqueles de supermercado con productos de consumo" />
-            </article>
-
-            <article class="tab-panel" data-panel="agotados">
-              <div>
-                <p class="tag">Inventario que frena venta</p>
-                <h3>Si el sistema ve inventario, la cadena no vuelve a pedir.</h3>
-                <p>Detectamos las diferencias entre inventarios físico y teóricos y procedemos a ajustarlos sin costo para la marca, activando así la fórmula de resurtido.</p>
-                <a class="micro-cta" href="#contacto" data-case-cta="Reducir agotados">Corregir agotados →</a>
-              </div>
-              <img loading="lazy" src="https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=900&q=80" alt="Pasillo de tienda con anaquel y productos" />
-            </article>
-
-            <article class="tab-panel" data-panel="exhibicion">
-              <div>
-                <p class="tag">Anaquel y exhibición</p>
-                <h3>Más frentes. Más oportunidad de venta.</h3>
-                <p>Gestionamos espacios, exhibiciones, materiales POP y visibilidad para que el consumidor encuentre tu producto y lo compre.</p>
-                <a class="micro-cta" href="#contacto" data-case-cta="Mejorar exhibición">Ganar más frentes →</a>
-              </div>
-              <img loading="lazy" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Frentes de productos en tienda de autoservicio" />
-            </article>
-
-            <article class="tab-panel" data-panel="monitoreo">
-              <div>
-                <p class="tag">Evidencia por visita</p>
-                <h3>Todas las actividades generan una evidencia fotográfica.</h3>
-                <p>Lo que no se demuestra NO se cobra.</p>
-                <a class="micro-cta" href="#contacto" data-case-cta="Evidencia con app">Ver evidencia →</a>
-              </div>
-              <img loading="lazy" src="https://gcomercial2030.com/wp-content/uploads/2024/07/App-2.png" alt="App única para tienda GC2030" />
-            </article>
-
-            <article class="tab-panel" data-panel="repse">
-              <div>
-                <p class="tag">Cambio de proveedor</p>
-                <h3>Cambia de promotoría sin perder control.</h3>
-                <p>GC 2030 opera promotoría para marcas de terceros con REPSE, rutas claras, evidencia y seguimiento comercial.</p>
-                <a class="micro-cta" href="#contacto" data-case-cta="Cambio de agencia">Revisar operación →</a>
-              </div>
-              <img loading="lazy" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80" alt="Reunión ejecutiva revisando una propuesta comercial" />
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="proceso" class="section-padding process-section">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow"><span></span> Modelo comercial</p>
-          <h2>De la tienda al reporte ejecutivo.</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item reveal">
-            <span>01</span>
-            <h3>Mapeamos tu venta</h3>
-            <p>Ofrecemos dashboard con los filtros necesarios para analizar la información de los puntos de venta.</p>
-          </article>
-          <article class="timeline-item reveal" style="--delay:.08s">
-            <span>02</span>
-            <h3>Trazamos rutas</h3>
-            <p>Definimos tiendas, frecuencia de visita, actividades por BPV y KPIs de cumplimiento.</p>
-          </article>
-          <article class="timeline-item reveal" style="--delay:.16s">
-            <span>03</span>
-            <h3>Visitamos y corregimos</h3>
-            <p>El BPV revisa anaquel, bodega, precio, inventario, frentes, materiales y exhibiciones.</p>
-          </article>
-          <article class="timeline-item reveal" style="--delay:.24s">
-            <span>04</span>
-            <h3>Dirección recibe evidencia</h3>
-            <p>Entregamos reportes ejecutivos con hallazgos, fotos, cumplimiento, focos rojos y oportunidades por tienda.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="visual-section section-padding">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span></span> Monitoreo comercial</p>
-          <h2>Lo que se ve, se corrige.</h2>
-        </div>
-        <div class="gallery-grid">
-          <article class="gallery-card reveal">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1601599963565-b7ba29c8e3ff?auto=format&fit=crop&w=900&q=80" alt="Anaquel surtido en supermercado" />
-            <span>Anaquel listo para vender</span>
-          </article>
-          <article class="gallery-card reveal" style="--delay:.07s">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80" alt="Operación logística y almacén" />
-            <span>Exhibiciones adicionales sin costo</span>
-          </article>
-          <article class="gallery-card reveal" style="--delay:.14s">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80" alt="Dashboard de datos y métricas" />
-            <span>KPIs para dirección</span>
-          </article>
-          <article class="gallery-card reveal" style="--delay:.21s">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80" alt="Reunión de negocio consultiva" />
-            <span>Revisión de negocio</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="testimonials-section section-padding">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow"><span></span> Testimonios de clientes</p>
-          <h2>Lo que dicen quienes ya trabajan con nosotros.</h2>
-          <p>Marcas y cadenas que confían su ejecución en punto de venta a GC 2030.</p>
-        </div>
-      </div>
-
-      <div class="testimonial-marquee testimonials-left" aria-label="Testimonios fila 1">
-        <div class="testimonial-track">
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Excelente atención y un servicio muy profesional. Gestión Comercial 2030 superó mis expectativas.”</p><strong>Ernesto Murillo</strong><small>Dirección comercial – GIEM</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“La calidad de su trabajo es impecable. Sin duda volvería a contratar sus servicios.”</p><strong>Raul Arroyo Higareda</strong><small>Área mánager México – Delaviuda</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Un equipo comprometido, eficiente y enfocado en las necesidades del cliente.”</p><strong>Alejandro González</strong><small>Director general – HC Foods</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“La experiencia fue excelente de principio a fin. Atención personalizada y gran profesionalismo.”</p><strong>José Luis Quesada</strong><small>Cliente</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“La confianza y seguridad que brindan los distingue de otras empresas.”</p><strong>Miguel Alonso</strong><small>Director general – Maizoro</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Recibí un servicio excepcional, con seguimiento constante y resultados sobresalientes.”</p><strong>Jimena García</strong><small>Directora general – PAFTEX</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Profesionalismo, calidad y atención al cliente en cada interacción. Muy satisfecho.”</p><strong>Arturo Kumamoto</strong><small>Director comercial – Calahua</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Excelente atención y un servicio muy profesional. Gestión Comercial 2030 superó mis expectativas.”</p><strong>Ernesto Murillo</strong><small>Dirección comercial – GIEM</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“La calidad de su trabajo es impecable. Sin duda volvería a contratar sus servicios.”</p><strong>Raul Arroyo Higareda</strong><small>Área mánager México – Delaviuda</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Un equipo comprometido, eficiente y enfocado en las necesidades del cliente.”</p><strong>Alejandro González</strong><small>Director general – HC Foods</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“La experiencia fue excelente de principio a fin. Atención personalizada y gran profesionalismo.”</p><strong>José Luis Quesada</strong><small>Cliente</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“La confianza y seguridad que brindan los distingue de otras empresas.”</p><strong>Miguel Alonso</strong><small>Director general – Maizoro</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Recibí un servicio excepcional, con seguimiento constante y resultados sobresalientes.”</p><strong>Jimena García</strong><small>Directora general – PAFTEX</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Profesionalismo, calidad y atención al cliente en cada interacción. Muy satisfecho.”</p><strong>Arturo Kumamoto</strong><small>Director comercial – Calahua</small></div></article>
-        </div>
-      </div>
-
-      <div class="testimonial-marquee testimonials-right" aria-label="Testimonios fila 2">
-        <div class="testimonial-track">
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Su experiencia y conocimiento marcaron una gran diferencia en nuestro proyecto.”</p><strong>Liz García Villanueva</strong><small>Dirección general – Alimentos Típicos Gavi</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Además del excelente servicio, GC 2030 logró gestionar espacios de exhibición adicionales para nuestros productos sin generar costos extra. Esto nos permitió aumentar nuestra visibilidad en tienda.”</p><strong>Lorenzo Ledesma Badillo</strong><small>Director comercial – Maulec</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Recomiendo ampliamente a GC 2030 por su compromiso, eficiencia y excelencia.”</p><strong>Angelica Aguilar</strong><small>Compras – Casa Ley</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Quedamos muy satisfechos con el servicio de GC 2030. Su equipo nos brindó atención personalizada, respuestas oportunas y soluciones efectivas.”</p><strong>Edgar Murillo</strong><small>Coordinador Field Sales – SuperLife</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Gracias al trabajo y las negociaciones de GC 2030, conseguimos exhibiciones adicionales en puntos estratégicos de venta. Su compromiso por generar valor marcó una gran diferencia en nuestros resultados.”</p><strong>Jose Antonio Montoya Valdivia</strong><small>Gerente de ventas autoservicio – Akron</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Trabajar con Gestión Comercial 2030 fue una decisión acertada. Servicio de primer nivel.”</p><strong>Marco Aurelio Chi</strong><small>Director comercial – Ugasa</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Su experiencia y conocimiento marcaron una gran diferencia en nuestro proyecto.”</p><strong>Liz García Villanueva</strong><small>Dirección general – Alimentos Típicos Gavi</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Además del excelente servicio, GC 2030 logró gestionar espacios de exhibición adicionales para nuestros productos sin generar costos extra. Esto nos permitió aumentar nuestra visibilidad en tienda.”</p><strong>Lorenzo Ledesma Badillo</strong><small>Director comercial – Maulec</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Recomiendo ampliamente a GC 2030 por su compromiso, eficiencia y excelencia.”</p><strong>Angelica Aguilar</strong><small>Compras – Casa Ley</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Quedamos muy satisfechos con el servicio de GC 2030. Su equipo nos brindó atención personalizada, respuestas oportunas y soluciones efectivas.”</p><strong>Edgar Murillo</strong><small>Coordinador Field Sales – SuperLife</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Gracias al trabajo y las negociaciones de GC 2030, conseguimos exhibiciones adicionales en puntos estratégicos de venta. Su compromiso por generar valor marcó una gran diferencia en nuestros resultados.”</p><strong>Jose Antonio Montoya Valdivia</strong><small>Gerente de ventas autoservicio – Akron</small></div></article>
-          <article class="testimonial-card"><div><span>★★★★★</span><p>“Trabajar con Gestión Comercial 2030 fue una decisión acertada. Servicio de primer nivel.”</p><strong>Marco Aurelio Chi</strong><small>Director comercial – Ugasa</small></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="section-padding faq-section">
-      <div class="container faq-grid">
-        <div class="section-heading reveal">
-          <p class="eyebrow"><span></span> Antes de operar</p>
-          <h2>Lo que debes tener claro antes de contratar promotoría.</h2>
-          <p>Preguntas clave para evaluar cobertura, costo, evidencia, REPSE y resultados en punto de venta.</p>
-        </div>
-        <div class="faq-list reveal" data-faq>
-          <article class="faq-item">
-            <button type="button" class="faq-button" aria-expanded="false">¿Trabajan solo autoservicio?<span>+</span></button>
-            <div class="faq-panel"><p>No. GC 2030 comunica cobertura en canal moderno, canal tradicional y tiendas especializadas. La propuesta se define según cadenas, plazas y tipo de producto.</p></div>
-          </article>
-          <article class="faq-item">
-            <button type="button" class="faq-button" aria-expanded="false">¿Cómo se define el costo?<span>+</span></button>
-            <div class="faq-panel"><p>Depende del número de tiendas, cobertura geográfica, frecuencia de visita, actividades en punto de venta y desgaste del anaquel.</p></div>
-          </article>
-          <article class="faq-item">
-            <button type="button" class="faq-button" aria-expanded="false">¿Qué evidencia recibe la marca?<span>+</span></button>
-            <div class="faq-panel"><p>Evidencia fotográfica, cumplimiento de visitas, información comercial, reportes de precios, competencia, frentes, focos rojos y ajustes de inventario.</p></div>
-          </article>
-          <article class="faq-item">
-            <button type="button" class="faq-button" aria-expanded="false">¿Pueden apoyar a una marca nueva en autoservicio?<span>+</span></button>
-            <div class="faq-panel"><p>Sí. El servicio es especialmente útil cuando una marca ya negoció entrada a cadena y necesita ejecución física para asegurar visibilidad y desplazamiento.</p></div>
-          </article>
-          <article class="faq-item">
-            <button type="button" class="faq-button" aria-expanded="false">¿El servicio ayuda a reducir agotados?<span>+</span></button>
-            <div class="faq-panel"><p>Sí. El trabajo en campo permite detectar huecos, inventarios incorrectos, producto en bodega, precios ausentes y otros focos rojos que frenan el resurtido.</p></div>
-          </article>
-          <article class="faq-item">
-            <button type="button" class="faq-button" aria-expanded="false">¿Cuentan con REPSE?<span>+</span></button>
-            <div class="faq-panel"><p>Sí. GC 2030 cuenta con el REPSE ante la Secretaría del Trabajo para representar marcas de terceros en tiendas de autoservicio.</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto" class="section-padding contact-section">
-      <div class="container contact-grid">
-        <div class="contact-copy reveal">
-          <p class="eyebrow"><span></span> Revisión de negocio</p>
-          <h2>Dinos dónde se está perdiendo la venta.</h2>
-          <p>Comparte tus cadenas, plazas, SKUs y reto actual. GC 2030 revisará si tu marca necesita cobertura, corrección de inventario, más frentes o monitoreo comercial.</p>
-          <div class="contact-highlights">
-            <span>Revisión comercial</span>
-            <span>Análisis por cadena</span>
-            <span>Venta en anaquel</span>
-          </div>
-        </div>
-
-        <form class="lead-form reveal" data-lead-form action="gracias.html">
-          <input type="hidden" id="caso" name="caso" value="Revisión de negocio" data-case-input>
-
-          <div class="form-row">
-            <label for="nombre">Nombre completo *</label>
-            <input id="nombre" name="nombre" type="text" placeholder="Ej. Mariana López" required>
-          </div>
-          <div class="form-row">
-            <label for="empresa">Empresa *</label>
-            <input id="empresa" name="empresa" type="text" placeholder="Ej. Marca de consumo masivo" required>
-          </div>
-          <div class="form-grid">
-            <div class="form-row">
-              <label for="correo">Correo corporativo *</label>
-              <input id="correo" name="correo" type="email" placeholder="nombre@empresa.com" required>
-            </div>
-            <div class="form-row">
-              <label for="whatsapp">WhatsApp *</label>
-              <input id="whatsapp" name="whatsapp" type="tel" placeholder="+52 55 0000 0000" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <label for="necesidad">Reto principal *</label>
-            <select id="necesidad" name="necesidad" required>
-              <option value="">Selecciona una opción</option>
-              <option>Entrar o crecer en autoservicio</option>
-              <option>Reducir agotados o inventario fantasma</option>
-              <option>Mejorar exhibición y frentes</option>
-              <option>Monitorear ejecución con app y KPI</option>
-              <option>Cambiar de agencia de promotoría</option>
-              <option>Solicitar alcance nacional</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="mensaje">Mensaje opcional</label>
-            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Ej. Tenemos presencia en Walmart, Chedraui o Soriana y necesitamos apoyo en anaquel."></textarea>
-          </div>
-          <label class="legal-check">
-            <input type="checkbox" required>
-            <span>Acepto términos y condiciones y autorizo que Gestión Comercial 2030 me contacte para dar seguimiento a mi solicitud.</span>
-          </label>
-          <button class="btn btn-primary form-submit" type="submit">Solicitar revisión comercial</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <a class="whatsapp-float" href="https://wa.me/525513258070?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20promotor%C3%ADa%20efectiva%20para%20mi%20marca." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M19.05 4.94A9.86 9.86 0 0 0 12.03 2C6.58 2 2.16 6.42 2.16 11.87c0 1.74.45 3.44 1.31 4.94L2 22l5.35-1.41a9.83 9.83 0 0 0 4.68 1.2h.01c5.44 0 9.86-4.42 9.86-9.86 0-2.63-1.03-5.11-2.85-6.99Z" fill="currentColor" opacity="0.18"/>
-      <path d="M16.93 14.45c-.27-.14-1.59-.78-1.84-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.21-.59.07-.27-.14-1.15-.42-2.18-1.35-.81-.72-1.36-1.6-1.52-1.87-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.46.09-.18.05-.35-.02-.48-.07-.14-.61-1.48-.84-2.02-.22-.53-.45-.46-.61-.46h-.52c-.18 0-.48.07-.73.35-.25.27-.95.93-.95 2.27s.97 2.63 1.11 2.81c.14.18 1.9 3.03 4.71 4.12 2.82 1.09 2.82.73 3.33.69.5-.05 1.59-.65 1.82-1.28.23-.63.23-1.17.16-1.28-.07-.12-.25-.18-.52-.32Z" fill="currentColor"/>
-    </svg>
+<header class="gc-nav" ref="{{ navRef }}" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,4vw,52px);transition:background .25s ease,box-shadow .25s ease,padding .25s ease">
+  <a href="#inicio" class="gc-brand" aria-label="Ir al inicio" style="display:flex;align-items:center">
+    <img src="assets/logo-gestion-comercial2030.svg" alt="Gestión Comercial 2030" style="height:70px;width:auto;max-width:230px;object-fit:contain;filter:brightness(0) invert(1)">
   </a>
+  <div style="display:flex;align-items:center;gap:16px">
+    <nav class="gc-menu" ref="{{ menuRef }}" style="display:flex;align-items:center;gap:22px;font-size:14px;font-weight:700">
+      <a class="gc-navlink" href="#problema" style="color:rgba(255,255,255,.85);transition:color .2s ease,transform .2s ease" style-hover="color:#fff;transform:translateY(-1px)">Anaquel</a>
+      <a class="gc-navlink" href="#solucion" style="color:rgba(255,255,255,.85);transition:color .2s ease,transform .2s ease" style-hover="color:#fff;transform:translateY(-1px)">Solución</a>
+      <a class="gc-navlink" href="#casos" style="color:rgba(255,255,255,.85);transition:color .2s ease,transform .2s ease" style-hover="color:#fff;transform:translateY(-1px)">Casos</a>
+      <a class="gc-navlink" href="#proceso" style="color:rgba(255,255,255,.85);transition:color .2s ease,transform .2s ease" style-hover="color:#fff;transform:translateY(-1px)">Proceso</a>
+      <a class="gc-navlink" href="#faq" style="color:rgba(255,255,255,.85);transition:color .2s ease,transform .2s ease" style-hover="color:#fff;transform:translateY(-1px)">FAQ</a>
+      <a href="#contacto" style="background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff;padding:12px 18px;border-radius:999px;font-weight:800;box-shadow:0 12px 30px rgba(240,122,0,.3)" style-hover="transform:translateY(-2px)">Solicitar revisión</a>
+    </nav>
+    <button type="button" aria-label="Cambiar tema" onClick="{{ toggleTheme }}" style="width:44px;height:44px;border-radius:14px;border:1px solid var(--glass-line);background:var(--glass);backdrop-filter:blur(12px);color:#fff;display:grid;place-items:center;font-size:18px" style-hover="transform:translateY(-2px)">
+      <span ref="{{ themeIconRef }}">☾</span>
+    </button>
+    <button type="button" aria-label="Abrir menú" onClick="{{ toggleMenu }}" ref="{{ burgerRef }}" style="display:none;width:44px;height:44px;border:1px solid var(--glass-line);border-radius:14px;background:var(--glass);align-items:center;justify-content:center;flex-direction:column;gap:5px;color:#fff">
+      <span style="width:18px;height:2px;background:currentColor;display:block"></span>
+      <span style="width:18px;height:2px;background:currentColor;display:block"></span>
+      <span style="width:18px;height:2px;background:currentColor;display:block"></span>
+    </button>
+  </div>
+</header>
 
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <img src="assets/logo-gestion-comercial2030.svg" alt="Gestión Comercial 2030" class="footer-logo" />
-        <p>Promotoría efectiva para vender más en punto de venta.</p>
+<section id="inicio" style="position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;padding:150px 0 clamp(48px,7vw,88px)">
+  <video class="gc-hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1600&q=80" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;animation:kenburns 24s ease-in-out infinite alternate">
+    <source src="https://assets.mixkit.co/videos/48128/48128-360.mp4" type="video/mp4">
+    <source src="https://assets.mixkit.co/videos/25438/25438-360.mp4" type="video/mp4">
+  </video>
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:1;background:var(--hero-scrim)"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:1;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:70px 70px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.6),transparent 70%)"></div>
+  <div aria-hidden="true" style="position:absolute;left:-8%;top:8%;width:44vw;height:44vw;z-index:1;background:radial-gradient(circle,var(--glow-1),transparent 62%);filter:blur(20px)"></div>
+
+  <div class="gc-hero-grid" style="position:relative;z-index:2;width:min(100% - 40px,1180px);margin-inline:auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(30px,5vw,70px);align-items:end">
+    <div>
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 20px;padding:8px 14px;border-radius:999px;background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(10px);color:#fff;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em">
+        <span style="width:8px;height:8px;border-radius:99px;background:var(--orange);box-shadow:0 0 0 0 rgba(240,122,0,.7);animation:pulse 1.8s infinite"></span> Ejecución comercial en punto de venta
+      </p>
+      <h1 style="font-family:'Space Grotesk','DM Sans',sans-serif;line-height:.92;letter-spacing:-.05em;margin:0;color:#fff;font-size:clamp(52px,7.4vw,104px);max-width:12ch;text-shadow:0 4px 40px rgba(0,0,0,.5)">Tu posición de marca se gana en la tienda.</h1>
+      <p style="color:rgba(255,255,255,.86);line-height:1.6;font-size:clamp(18px,2vw,22px);max-width:600px;margin:24px 0 0;text-shadow:0 2px 18px rgba(0,0,0,.5)">GC 2030 ejecuta un protocolo en punto de venta: personal en campo, app propia, cobertura nacional y reportes de KPI's accionables que defienden tu producto en anaquel.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:34px">
+        <a class="gc-case" data-case="Revisión de negocio" href="#contacto" style="display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:16px 26px;border-radius:999px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--orange),var(--orange-2));box-shadow:0 16px 40px rgba(240,122,0,.34)" style-hover="transform:translateY(-2px)">Solicitar revisión comercial</a>
+        <a href="#casos" style="display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:16px 26px;border-radius:999px;font-weight:800;color:#fff;background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(12px)" style-hover="transform:translateY(-2px)">Ver cómo operamos</a>
       </div>
-      <nav aria-label="Links del footer">
-        <a href="#solucion">Solución</a>
-        <a href="#casos">Casos</a>
-        <a href="#contacto">Formulario</a>
-      </nav>
+      <div style="display:flex;gap:0;flex-wrap:wrap;margin-top:38px;border:1px solid var(--glass-line);border-radius:20px;background:var(--glass);backdrop-filter:blur(14px);overflow:hidden;max-width:560px">
+        <div style="flex:1;min-width:150px;padding:18px 22px;border-right:1px solid var(--glass-line)">
+          <strong style="display:block;font-family:'Space Grotesk',sans-serif;font-size:30px;color:#fff;letter-spacing:-.04em">+3,000</strong>
+          <span style="display:block;margin-top:4px;color:rgba(255,255,255,.72);font-size:13px;font-weight:700">Puntos de venta</span>
+        </div>
+        <div style="flex:1;min-width:150px;padding:18px 22px;border-right:1px solid var(--glass-line)">
+          <strong style="display:block;font-family:'Space Grotesk',sans-serif;font-size:30px;color:#fff;letter-spacing:-.04em">+200</strong>
+          <span style="display:block;margin-top:4px;color:rgba(255,255,255,.72);font-size:13px;font-weight:700">En campo</span>
+        </div>
+        <div style="flex:1;min-width:130px;padding:18px 22px">
+          <strong style="display:block;font-family:'Space Grotesk',sans-serif;font-size:30px;color:#fff;letter-spacing:-.04em">Nacional</strong>
+          <span style="display:block;margin-top:4px;color:rgba(255,255,255,.72);font-size:13px;font-weight:700">Cobertura</span>
+        </div>
+      </div>
     </div>
-    <div class="container footer-bottom">
-      <span>Gestión Comercial 2030 © 2026 · Todos los derechos reservados.</span>
-      <span>Desarrollado por <a href="https://dinametra.com/" target="_blank" rel="noopener">Dinametra.com</a></span>
-    </div>
-  </footer>
 
-  <script src="script.js"></script>
+    <div class="gc-hero-side" style="position:relative;justify-self:end;width:100%;max-width:320px;display:flex;flex-direction:column;gap:16px;align-items:flex-end">
+      <div style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;background:var(--glass-strong);border:1px solid var(--glass-line);backdrop-filter:blur(14px);color:#fff;font-size:13px;font-weight:800;box-shadow:var(--shadow)">
+        <span style="width:10px;height:10px;border-radius:99px;background:var(--orange);box-shadow:0 0 0 0 rgba(240,122,0,.7);animation:pulse 1.8s infinite"></span> Evidencia en tiempo real
+      </div>
+      <div style="width:230px;border-radius:32px;padding:12px;background:var(--glass-strong);border:1px solid var(--glass-line);backdrop-filter:blur(18px);box-shadow:var(--shadow);animation:floatSoft 6s ease-in-out infinite">
+        <img src="https://gcomercial2030.com/wp-content/uploads/2024/07/App-2.png" alt="App móvil de monitoreo GC2030" style="border-radius:24px;max-height:400px;margin:auto">
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:22px;z-index:2;width:min(100% - 40px,1180px);margin-inline:auto;display:flex;gap:10px;flex-wrap:wrap">
+    <span style="display:inline-flex;align-items:center;border:1px solid var(--glass-line);background:var(--glass-strong);backdrop-filter:blur(10px);padding:10px 14px;border-radius:999px;color:#fff;font-size:13px;font-weight:700">BPV en tienda</span>
+    <span style="display:inline-flex;align-items:center;border:1px solid var(--glass-line);background:var(--glass-strong);backdrop-filter:blur(10px);padding:10px 14px;border-radius:999px;color:#fff;font-size:13px;font-weight:700">Monitoreo geolocalizado</span>
+    <span style="display:inline-flex;align-items:center;border:1px solid var(--glass-line);background:var(--glass-strong);backdrop-filter:blur(10px);padding:10px 14px;border-radius:999px;color:#fff;font-size:13px;font-weight:700">Fotos, rutas y KPIs por visita</span>
+  </div>
+</section>
+
+<section aria-label="Beneficios principales" style="border-block:1px solid var(--line);background:var(--bg-2);overflow:hidden">
+  <div style="display:flex;white-space:nowrap;overflow:hidden">
+    <div style="display:flex;gap:14px;min-width:max-content;animation:scrollLeft 30s linear infinite;padding:16px 0">
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Producto fuera de bodega<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Menos agotados<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Inventario corregido<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Reportes para dirección<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Operación con REPSE<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Monitoreo geolocalizado<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Producto fuera de bodega<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Menos agotados<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Inventario corregido<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Reportes para dirección<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Operación con REPSE<span style="color:var(--orange);margin-left:12px">•</span></span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--heading);font-size:clamp(18px,3vw,32px);letter-spacing:-.04em;padding:0 26px">Monitoreo geolocalizado<span style="color:var(--orange);margin-left:12px">•</span></span>
+    </div>
+  </div>
+</section>
+
+<section id="problema" style="padding:clamp(76px,10vw,140px) 0">
+  <div style="width:min(100% - 40px,1180px);margin-inline:auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(26px,5vw,70px);align-items:start" class="gc-split">
+    <div class="reveal">
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--orange);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em"><span style="width:34px;height:2px;background:var(--orange)"></span> El problema en tienda</p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;line-height:.95;letter-spacing:-.05em;margin:0;color:var(--heading);font-size:clamp(38px,5.6vw,72px)">En la bodega no se vende.</h2>
+    </div>
+    <div class="reveal" style="--delay:.1s;background:linear-gradient(135deg,var(--card-a),var(--card-b));border:1px solid var(--line);border-radius:26px;padding:clamp(26px,4vw,54px);box-shadow:var(--shadow)">
+      <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,50px);line-height:1.02;letter-spacing:-.04em;color:var(--heading);margin:0 0 20px">Si tu producto se queda en la bodega, la venta nunca llega.</p>
+      <p style="color:var(--muted);line-height:1.7;font-size:16px;margin:0">GC 2030 garantiza que todo el inventario de producto se encuentre en el anaquel, y el excedente en exhibiciones adicionales.</p>
+    </div>
+  </div>
+</section>
+
+<section id="solucion" style="padding:clamp(76px,10vw,140px) 0">
+  <div style="width:min(100% - 40px,1180px);margin-inline:auto">
+    <div class="reveal" style="text-align:center;margin-inline:auto;display:flex;flex-direction:column;align-items:center;max-width:820px">
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--orange);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em"><span style="width:34px;height:2px;background:var(--orange)"></span> Solución 360</p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;line-height:.95;letter-spacing:-.05em;margin:0;color:var(--heading);font-size:clamp(38px,5.6vw,72px)">Promotoría que genera ventas.</h2>
+      <p style="color:var(--muted);line-height:1.7;font-size:16px;max-width:620px;margin:18px 0 0">Estructura de campo especializada y focalizada en el logro de los objetivos de la marca.</p>
+    </div>
+    <div class="gc-value-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px">
+      <article class="reveal" style="background:linear-gradient(180deg,var(--card-a),var(--card-b));border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:26px;min-height:280px;transition:transform .25s ease,border-color .25s ease" style-hover="transform:translateY(-10px);border-color:rgba(240,122,0,.55)">
+        <div style="width:48px;height:48px;border-radius:15px;background:rgba(240,122,0,.14);color:var(--orange);display:grid;place-items:center;font-weight:900;margin-bottom:50px;border:1px solid rgba(240,122,0,.28)">01</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;color:var(--heading)">Ejecución en tienda</h3>
+        <p style="color:var(--muted);font-size:15px;line-height:1.6;margin:0">Personal de campo: vendedores punto de venta (VPV's), líderes de equipo, VPV's PLUS y grupos comando.</p>
+      </article>
+      <article class="reveal" style="--delay:.08s;background:linear-gradient(180deg,var(--card-a),var(--card-b));border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:26px;min-height:280px;transition:transform .25s ease,border-color .25s ease" style-hover="transform:translateY(-10px);border-color:rgba(240,122,0,.55)">
+        <div style="width:48px;height:48px;border-radius:15px;background:rgba(240,122,0,.14);color:var(--orange);display:grid;place-items:center;font-weight:900;margin-bottom:50px;border:1px solid rgba(240,122,0,.28)">02</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;color:var(--heading)">Ajustes de inventarios</h3>
+        <p style="color:var(--muted);font-size:15px;line-height:1.6;margin:0">Ejecución de los procesos internos de cada cadena para cuadrar inventarios físicos y teóricos, sin cargo para la marca. Reactivando la fórmula de resurtido.</p>
+      </article>
+      <article class="reveal" style="--delay:.16s;background:linear-gradient(180deg,var(--card-a),var(--card-b));border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:26px;min-height:280px;transition:transform .25s ease,border-color .25s ease" style-hover="transform:translateY(-10px);border-color:rgba(240,122,0,.55)">
+        <div style="width:48px;height:48px;border-radius:15px;background:rgba(240,122,0,.14);color:var(--orange);display:grid;place-items:center;font-weight:900;margin-bottom:50px;border:1px solid rgba(240,122,0,.28)">03</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;color:var(--heading)">App</h3>
+        <p style="color:var(--muted);font-size:15px;line-height:1.6;margin:0">Evidencias fotográficas y KPI's (anaquel, precios, exhibiciones adicionales, acciones de competencia, etc.).</p>
+      </article>
+      <article class="reveal" style="--delay:.24s;background:linear-gradient(180deg,var(--card-a),var(--card-b));border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:26px;min-height:280px;transition:transform .25s ease,border-color .25s ease" style-hover="transform:translateY(-10px);border-color:rgba(240,122,0,.55)">
+        <div style="width:48px;height:48px;border-radius:15px;background:rgba(240,122,0,.14);color:var(--orange);display:grid;place-items:center;font-weight:900;margin-bottom:50px;border:1px solid rgba(240,122,0,.28)">04</div>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;color:var(--heading)">Blindaje legal y laboral</h3>
+        <p style="color:var(--muted);font-size:15px;line-height:1.6;margin:0">Servicio con REPSE para operar marcas de terceros en punto de venta.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section style="padding:28px 0;border-block:1px solid var(--line);background:var(--stats-bg)">
+  <div class="gc-stats reveal" style="width:min(100% - 40px,1180px);margin-inline:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+    <div style="padding:24px;border-right:1px solid var(--line)">
+      <strong data-count="3000" data-suffix="+" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,5vw,62px);letter-spacing:-.05em;color:var(--heading);display:block">0</strong>
+      <span style="display:block;color:var(--muted);font-weight:700;font-size:14px;margin-top:4px">puntos de venta</span>
+    </div>
+    <div style="padding:24px;border-right:1px solid var(--line)">
+      <strong data-count="200" data-suffix="+" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,5vw,62px);letter-spacing:-.05em;color:var(--heading);display:block">0</strong>
+      <span style="display:block;color:var(--muted);font-weight:700;font-size:14px;margin-top:4px">colaboradores en campo</span>
+    </div>
+    <div style="padding:24px;border-right:1px solid var(--line)">
+      <strong data-count="100" data-suffix="%" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,5vw,62px);letter-spacing:-.05em;color:var(--heading);display:block">0</strong>
+      <span style="display:block;color:var(--muted);font-weight:700;font-size:14px;margin-top:4px">alcance nacional</span>
+    </div>
+    <div style="padding:24px">
+      <strong data-count="360" data-suffix="°" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,5vw,62px);letter-spacing:-.05em;color:var(--heading);display:block">0</strong>
+      <span style="display:block;color:var(--muted);font-weight:700;font-size:14px;margin-top:4px">solución integral</span>
+    </div>
+  </div>
+</section>
+<section style="padding:clamp(70px,9vw,118px) 0;background:linear-gradient(180deg,transparent,var(--bg-2))">
+  <div style="width:min(100% - 40px,1180px);margin-inline:auto">
+    <div class="reveal" style="text-align:center;margin-inline:auto;display:flex;flex-direction:column;align-items:center;max-width:820px">
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--orange);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em"><span style="width:34px;height:2px;background:var(--orange)"></span> Socios comerciales</p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;line-height:.95;letter-spacing:-.05em;margin:0;color:var(--heading);font-size:clamp(38px,5.6vw,72px)">Socios comerciales en canal moderno.</h2>
+      <p style="color:var(--muted);line-height:1.7;font-size:16px;max-width:680px;margin:18px 0 0">Marcas que han confiado su ejecución en punto de venta a GC 2030 para garantizar presencia en anaquel, exhibiciones adicionales sin costo, ajustes de inventarios y monitoreo de KPI's.</p>
+    </div>
+    <div class="gc-logos reveal" style="--delay:.1s;display:grid;grid-template-columns:repeat(7,1fr);gap:14px;margin-top:42px">
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-delaviuda.png" alt="La Confitería Delaviuda" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-gabi.png" alt="Gavi" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-la-alianza.png" alt="La Alianza Carnicería" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-apsa.png" alt="APSA Alimentos Preformados" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-mabe.png" alt="Mabe" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-bonanza.png" alt="La Bonanza Avocados" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-maulec.png" alt="Pasteurizadora Maulec" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-ley.png" alt="Ley" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-superlife.png" alt="SuperLife" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-scrub-daddy.png" alt="Scrub Daddy" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-ciem.png" alt="CIEM Importación y Exportación" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-san-marcos.png" alt="San Marcos" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-akron.png" alt="Akron" style="width:100%;height:72px;object-fit:contain"></article>
+      <article style="min-height:120px;border:1px solid var(--line);border-radius:20px;background:#fff;display:grid;place-items:center;padding:18px;box-shadow:var(--shadow);transition:transform .22s ease,border-color .22s ease" style-hover="transform:translateY(-6px);border-color:rgba(240,122,0,.55)"><img loading="lazy" src="assets/logo-socio-hc-foods.png" alt="HC Foods" style="width:100%;height:72px;object-fit:contain"></article>
+    </div>
+  </div>
+</section>
+
+<section id="casos" style="padding:clamp(76px,10vw,140px) 0">
+  <div style="width:min(100% - 40px,1180px);margin-inline:auto">
+    <div class="reveal" style="max-width:820px">
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--orange);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em"><span style="width:34px;height:2px;background:var(--orange)"></span> Casos comerciales</p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;line-height:.95;letter-spacing:-.05em;margin:0;color:var(--heading);font-size:clamp(38px,5.6vw,72px)">Cinco problemas que afectan tu marca.</h2>
+      <p style="color:var(--muted);line-height:1.7;font-size:16px;max-width:620px;margin:18px 0 0">Elige el problema que hoy te cuesta venta en tienda y solicita una revisión comercial con GC 2030.</p>
+    </div>
+
+    <div class="gc-tabs reveal" style="margin-top:40px;border:1px solid var(--line);border-radius:34px;background:linear-gradient(180deg,var(--card-a),var(--card-b));padding:14px;box-shadow:var(--shadow)">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+        <button type="button" class="gc-tab-btn" data-tab="entrada" style="border:1px solid var(--line);border-radius:999px;background:var(--pill-active-bg);color:var(--pill-active-text);padding:12px 15px;font-weight:800;transition:.2s ease">Producto recién negociado</button>
+        <button type="button" class="gc-tab-btn" data-tab="agotados" style="border:1px solid var(--line);border-radius:999px;background:var(--chip-bg);color:var(--muted);padding:12px 15px;font-weight:800;transition:.2s ease">Diferencia de inventario</button>
+        <button type="button" class="gc-tab-btn" data-tab="exhibicion" style="border:1px solid var(--line);border-radius:999px;background:var(--chip-bg);color:var(--muted);padding:12px 15px;font-weight:800;transition:.2s ease">Anaquel</button>
+        <button type="button" class="gc-tab-btn" data-tab="monitoreo" style="border:1px solid var(--line);border-radius:999px;background:var(--chip-bg);color:var(--muted);padding:12px 15px;font-weight:800;transition:.2s ease">Evidencia</button>
+        <button type="button" class="gc-tab-btn" data-tab="repse" style="border:1px solid var(--line);border-radius:999px;background:var(--chip-bg);color:var(--muted);padding:12px 15px;font-weight:800;transition:.2s ease">REPSE</button>
+      </div>
+      <div>
+        <article class="gc-tab-panel" data-panel="entrada" style="display:grid;grid-template-columns:1fr .78fr;gap:24px;align-items:center;padding:clamp(20px,4vw,42px);background:linear-gradient(135deg,var(--card-a),var(--card-b));border-radius:26px">
+          <div>
+            <p style="display:inline-flex;margin:0 0 16px;color:var(--orange);background:rgba(240,122,0,.12);border:1px solid rgba(240,122,0,.24);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em">Producto recién negociado</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,36px);line-height:1.02;letter-spacing:-.035em;margin:0 0 14px;color:var(--heading)">Tu orden de compra necesita manos en tienda.</h3>
+            <p style="color:var(--muted);line-height:1.6;margin:0 0 12px">Un producto nuevo no tiene espacio en planograma y no es resurtible.</p>
+            <a class="gc-case" data-case="Entrada a cadena" href="#contacto" style="display:inline-flex;color:var(--orange);font-weight:900">Revisar cobertura →</a>
+          </div>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=80" alt="Anaqueles de supermercado" style="width:100%;height:360px;object-fit:cover;border-radius:22px;border:1px solid var(--line)">
+        </article>
+        <article class="gc-tab-panel" data-panel="agotados" style="display:none;grid-template-columns:1fr .78fr;gap:24px;align-items:center;padding:clamp(20px,4vw,42px);background:linear-gradient(135deg,var(--card-a),var(--card-b));border-radius:26px">
+          <div>
+            <p style="display:inline-flex;margin:0 0 16px;color:var(--orange);background:rgba(240,122,0,.12);border:1px solid rgba(240,122,0,.24);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em">Inventario que frena venta</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,36px);line-height:1.02;letter-spacing:-.035em;margin:0 0 14px;color:var(--heading)">Si el sistema ve inventario, la cadena no vuelve a pedir.</h3>
+            <p style="color:var(--muted);line-height:1.6;margin:0 0 12px">Detectamos diferencias entre inventario físico y teórico y las ajustamos sin costo, activando la fórmula de resurtido.</p>
+            <a class="gc-case" data-case="Reducir agotados" href="#contacto" style="display:inline-flex;color:var(--orange);font-weight:900">Corregir agotados →</a>
+          </div>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=900&q=80" alt="Pasillo de tienda con anaquel" style="width:100%;height:360px;object-fit:cover;border-radius:22px;border:1px solid var(--line)">
+        </article>
+        <article class="gc-tab-panel" data-panel="exhibicion" style="display:none;grid-template-columns:1fr .78fr;gap:24px;align-items:center;padding:clamp(20px,4vw,42px);background:linear-gradient(135deg,var(--card-a),var(--card-b));border-radius:26px">
+          <div>
+            <p style="display:inline-flex;margin:0 0 16px;color:var(--orange);background:rgba(240,122,0,.12);border:1px solid rgba(240,122,0,.24);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em">Anaquel y exhibición</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,36px);line-height:1.02;letter-spacing:-.035em;margin:0 0 14px;color:var(--heading)">Más frentes. Más oportunidad de venta.</h3>
+            <p style="color:var(--muted);line-height:1.6;margin:0 0 12px">Gestionamos espacios, exhibiciones, materiales POP y visibilidad para que el consumidor encuentre tu producto y lo compre.</p>
+            <a class="gc-case" data-case="Mejorar exhibición" href="#contacto" style="display:inline-flex;color:var(--orange);font-weight:900">Ganar más frentes →</a>
+          </div>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Frentes de productos en tienda" style="width:100%;height:360px;object-fit:cover;border-radius:22px;border:1px solid var(--line)">
+        </article>
+        <article class="gc-tab-panel" data-panel="monitoreo" style="display:none;grid-template-columns:1fr .78fr;gap:24px;align-items:center;padding:clamp(20px,4vw,42px);background:linear-gradient(135deg,var(--card-a),var(--card-b));border-radius:26px">
+          <div>
+            <p style="display:inline-flex;margin:0 0 16px;color:var(--orange);background:rgba(240,122,0,.12);border:1px solid rgba(240,122,0,.24);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em">Evidencia por visita</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,36px);line-height:1.02;letter-spacing:-.035em;margin:0 0 14px;color:var(--heading)">Todas las actividades generan una evidencia fotográfica.</h3>
+            <p style="color:var(--muted);line-height:1.6;margin:0 0 12px">Lo que no se demuestra NO se cobra.</p>
+            <a class="gc-case" data-case="Monitoreo con app" href="#contacto" style="display:inline-flex;color:var(--orange);font-weight:900">Ver evidencia →</a>
+          </div>
+          <img loading="lazy" src="https://gcomercial2030.com/wp-content/uploads/2024/07/App-2.png" alt="App única GC2030" style="width:100%;height:360px;object-fit:contain;border-radius:22px;border:1px solid var(--line);background:var(--panel);padding:10px">
+        </article>
+        <article class="gc-tab-panel" data-panel="repse" style="display:none;grid-template-columns:1fr .78fr;gap:24px;align-items:center;padding:clamp(20px,4vw,42px);background:linear-gradient(135deg,var(--card-a),var(--card-b));border-radius:26px">
+          <div>
+            <p style="display:inline-flex;margin:0 0 16px;color:var(--orange);background:rgba(240,122,0,.12);border:1px solid rgba(240,122,0,.24);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em">Cambio de proveedor</p>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,36px);line-height:1.02;letter-spacing:-.035em;margin:0 0 14px;color:var(--heading)">Cambia de promotoría sin perder control.</h3>
+            <p style="color:var(--muted);line-height:1.6;margin:0 0 12px">GC 2030 opera promotoría para marcas de terceros con REPSE, rutas claras, evidencia y seguimiento comercial.</p>
+            <a class="gc-case" data-case="Cambio de agencia" href="#contacto" style="display:inline-flex;color:var(--orange);font-weight:900">Revisar operación →</a>
+          </div>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80" alt="Reunión ejecutiva revisando propuesta" style="width:100%;height:360px;object-fit:cover;border-radius:22px;border:1px solid var(--line)">
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="proceso" style="padding:clamp(76px,10vw,140px) 0;background:var(--bg-2)">
+  <div style="width:min(100% - 40px,1180px);margin-inline:auto">
+    <div class="reveal" style="text-align:center;margin-inline:auto;display:flex;flex-direction:column;align-items:center;max-width:820px">
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--orange);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em"><span style="width:34px;height:2px;background:var(--orange)"></span> Modelo comercial</p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;line-height:.95;letter-spacing:-.05em;margin:0;color:var(--heading);font-size:clamp(38px,5.6vw,72px)">De la tienda al reporte ejecutivo.</h2>
+    </div>
+    <div class="gc-timeline" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px">
+      <article class="reveal" style="background:linear-gradient(180deg,var(--card-a),var(--card-b));border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:26px;position:relative;overflow:hidden;transition:transform .25s ease" style-hover="transform:translateY(-8px)">
+        <div style="position:absolute;inset:auto -30% -50% auto;width:180px;height:180px;background:radial-gradient(circle,rgba(240,122,0,.16),transparent 65%)"></div>
+        <span style="display:inline-grid;place-items:center;width:46px;height:46px;border-radius:999px;background:var(--pill-active-bg);color:var(--pill-active-text);font-weight:900;margin-bottom:36px">01</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;color:var(--heading)">Mapeamos tu venta</h3>
+        <p style="color:var(--muted);font-size:15px;line-height:1.6;margin:0">Dashboard con los filtros necesarios para analizar la información de los puntos de venta.</p>
+      </article>
+      <article class="reveal" style="--delay:.08s;background:linear-gradient(180deg,var(--card-a),var(--card-b));border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:26px;position:relative;overflow:hidden;transition:transform .25s ease" style-hover="transform:translateY(-8px)">
+        <div style="position:absolute;inset:auto -30% -50% auto;width:180px;height:180px;background:radial-gradient(circle,rgba(240,122,0,.16),transparent 65%)"></div>
+        <span style="display:inline-grid;place-items:center;width:46px;height:46px;border-radius:999px;background:var(--pill-active-bg);color:var(--pill-active-text);font-weight:900;margin-bottom:36px">02</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;color:var(--heading)">Trazamos rutas</h3>
+        <p style="color:var(--muted);font-size:15px;line-height:1.6;margin:0">Definimos tiendas, frecuencia de visita, actividades por BPV y KPIs de cumplimiento.</p>
+      </article>
+      <article class="reveal" style="--delay:.16s;background:linear-gradient(180deg,var(--card-a),var(--card-b));border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:26px;position:relative;overflow:hidden;transition:transform .25s ease" style-hover="transform:translateY(-8px)">
+        <div style="position:absolute;inset:auto -30% -50% auto;width:180px;height:180px;background:radial-gradient(circle,rgba(240,122,0,.16),transparent 65%)"></div>
+        <span style="display:inline-grid;place-items:center;width:46px;height:46px;border-radius:999px;background:var(--pill-active-bg);color:var(--pill-active-text);font-weight:900;margin-bottom:36px">03</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;color:var(--heading)">Visitamos y corregimos</h3>
+        <p style="color:var(--muted);font-size:15px;line-height:1.6;margin:0">El BPV revisa anaquel, bodega, precio, inventario, frentes, materiales y exhibiciones.</p>
+      </article>
+      <article class="reveal" style="--delay:.24s;background:linear-gradient(180deg,var(--card-a),var(--card-b));border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:26px;position:relative;overflow:hidden;transition:transform .25s ease" style-hover="transform:translateY(-8px)">
+        <div style="position:absolute;inset:auto -30% -50% auto;width:180px;height:180px;background:radial-gradient(circle,rgba(240,122,0,.16),transparent 65%)"></div>
+        <span style="display:inline-grid;place-items:center;width:46px;height:46px;border-radius:999px;background:var(--pill-active-bg);color:var(--pill-active-text);font-weight:900;margin-bottom:36px">04</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;color:var(--heading)">Dirección recibe evidencia</h3>
+        <p style="color:var(--muted);font-size:15px;line-height:1.6;margin:0">Reportes ejecutivos con hallazgos, fotos, cumplimiento, focos rojos y oportunidades por tienda.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section style="padding:clamp(76px,10vw,140px) 0">
+  <div style="width:min(100% - 40px,1180px);margin-inline:auto">
+    <div class="reveal" style="max-width:820px">
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--orange);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em"><span style="width:34px;height:2px;background:var(--orange)"></span> Monitoreo comercial</p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;line-height:.95;letter-spacing:-.05em;margin:0;color:var(--heading);font-size:clamp(38px,5.6vw,72px)">Lo que se ve, se corrige.</h2>
+    </div>
+    <div class="gc-gallery" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:42px">
+      <article class="reveal" style="position:relative;height:360px;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#111;transition:transform .25s ease" style-hover="transform:translateY(-8px)">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1601599963565-b7ba29c8e3ff?auto=format&fit=crop&w=900&q=80" alt="Anaquel surtido" style="width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),transparent 55%)"></div>
+        <span style="position:absolute;left:18px;right:18px;bottom:18px;z-index:2;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;line-height:1.05;color:#fff;letter-spacing:-.03em">Anaquel listo para vender</span>
+      </article>
+      <article class="reveal" style="--delay:.07s;position:relative;height:360px;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#111;transition:transform .25s ease" style-hover="transform:translateY(-8px)">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80" alt="Operación logística" style="width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),transparent 55%)"></div>
+        <span style="position:absolute;left:18px;right:18px;bottom:18px;z-index:2;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;line-height:1.05;color:#fff;letter-spacing:-.03em">Exhibiciones adicionales sin costo</span>
+      </article>
+      <article class="reveal" style="--delay:.14s;position:relative;height:360px;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#111;transition:transform .25s ease" style-hover="transform:translateY(-8px)">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80" alt="Dashboard de datos" style="width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),transparent 55%)"></div>
+        <span style="position:absolute;left:18px;right:18px;bottom:18px;z-index:2;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;line-height:1.05;color:#fff;letter-spacing:-.03em">KPIs para dirección</span>
+      </article>
+      <article class="reveal" style="--delay:.21s;position:relative;height:360px;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#111;transition:transform .25s ease" style-hover="transform:translateY(-8px)">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80" alt="Reunión de negocio" style="width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),transparent 55%)"></div>
+        <span style="position:absolute;left:18px;right:18px;bottom:18px;z-index:2;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;line-height:1.05;color:#fff;letter-spacing:-.03em">Revisión de negocio</span>
+      </article>
+    </div>
+  </div>
+</section>
+<section style="padding:clamp(76px,10vw,140px) 0 clamp(60px,8vw,100px);overflow:hidden;background:var(--bg-2)">
+  <div style="width:min(100% - 40px,1180px);margin-inline:auto">
+    <div class="reveal" style="text-align:center;margin-inline:auto;display:flex;flex-direction:column;align-items:center;max-width:820px">
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--orange);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em"><span style="width:34px;height:2px;background:var(--orange)"></span> Testimonios de clientes</p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;line-height:.95;letter-spacing:-.05em;margin:0;color:var(--heading);font-size:clamp(38px,5.6vw,72px)">Lo que dicen quienes ya trabajan con nosotros.</h2>
+      <p style="color:var(--muted);line-height:1.7;font-size:16px;max-width:620px;margin:18px 0 0">Marcas y cadenas que confían su ejecución en punto de venta a GC 2030.</p>
+    </div>
+  </div>
+  <div style="display:flex;overflow:hidden;margin-top:40px">
+    <div style="display:flex;gap:16px;min-width:max-content;animation:scrollLeft 40s linear infinite">
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Excelente atención y un servicio muy profesional. GC 2030 superó mis expectativas."</p><strong>Ernesto Murillo</strong><small>Dirección comercial – GIEM</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"La calidad de su trabajo es impecable. Sin duda volvería a contratar sus servicios."</p><strong>Raul Arroyo Higareda</strong><small>Área mánager México – Delaviuda</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Un equipo comprometido, eficiente y enfocado en las necesidades del cliente."</p><strong>Alejandro González</strong><small>Director general – HC Foods</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"La confianza y seguridad que brindan los distingue de otras empresas."</p><strong>Miguel Alonso</strong><small>Director general – Maizoro</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Recibí un servicio excepcional, con seguimiento constante y resultados sobresalientes."</p><strong>Jimena García</strong><small>Directora general – PAFTEX</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Profesionalismo, calidad y atención al cliente en cada interacción. Muy satisfecho."</p><strong>Arturo Kumamoto</strong><small>Director comercial – Calahua</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Excelente atención y un servicio muy profesional. GC 2030 superó mis expectativas."</p><strong>Ernesto Murillo</strong><small>Dirección comercial – GIEM</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"La calidad de su trabajo es impecable. Sin duda volvería a contratar sus servicios."</p><strong>Raul Arroyo Higareda</strong><small>Área mánager México – Delaviuda</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Un equipo comprometido, eficiente y enfocado en las necesidades del cliente."</p><strong>Alejandro González</strong><small>Director general – HC Foods</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"La confianza y seguridad que brindan los distingue de otras empresas."</p><strong>Miguel Alonso</strong><small>Director general – Maizoro</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Recibí un servicio excepcional, con seguimiento constante y resultados sobresalientes."</p><strong>Jimena García</strong><small>Directora general – PAFTEX</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Profesionalismo, calidad y atención al cliente en cada interacción. Muy satisfecho."</p><strong>Arturo Kumamoto</strong><small>Director comercial – Calahua</small></article>
+    </div>
+  </div>
+  <div style="display:flex;overflow:hidden;margin-top:16px">
+    <div style="display:flex;gap:16px;min-width:max-content;animation:scrollRight 44s linear infinite">
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Su experiencia y conocimiento marcaron una gran diferencia en nuestro proyecto."</p><strong>Liz García Villanueva</strong><small>Dirección general – Alimentos Típicos Gavi</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"GC 2030 gestionó espacios de exhibición adicionales para nuestros productos sin costos extra. Aumentó nuestra visibilidad en tienda."</p><strong>Lorenzo Ledesma Badillo</strong><small>Director comercial – Maulec</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Recomiendo ampliamente a GC 2030 por su compromiso, eficiencia y excelencia."</p><strong>Angelica Aguilar</strong><small>Compras – Casa Ley</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Atención personalizada, respuestas oportunas y soluciones efectivas. Muy satisfechos."</p><strong>Edgar Murillo</strong><small>Coordinador Field Sales – SuperLife</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Conseguimos exhibiciones adicionales en puntos estratégicos. Su compromiso marcó una gran diferencia en nuestros resultados."</p><strong>Jose Antonio Montoya</strong><small>Gerente autoservicio – Akron</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Trabajar con GC 2030 fue una decisión acertada. Servicio de primer nivel."</p><strong>Marco Aurelio Chi</strong><small>Director comercial – Ugasa</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Su experiencia y conocimiento marcaron una gran diferencia en nuestro proyecto."</p><strong>Liz García Villanueva</strong><small>Dirección general – Alimentos Típicos Gavi</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"GC 2030 gestionó espacios de exhibición adicionales para nuestros productos sin costos extra. Aumentó nuestra visibilidad en tienda."</p><strong>Lorenzo Ledesma Badillo</strong><small>Director comercial – Maulec</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Recomiendo ampliamente a GC 2030 por su compromiso, eficiencia y excelencia."</p><strong>Angelica Aguilar</strong><small>Compras – Casa Ley</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Atención personalizada, respuestas oportunas y soluciones efectivas. Muy satisfechos."</p><strong>Edgar Murillo</strong><small>Coordinador Field Sales – SuperLife</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Conseguimos exhibiciones adicionales en puntos estratégicos. Su compromiso marcó una gran diferencia en nuestros resultados."</p><strong>Jose Antonio Montoya</strong><small>Gerente autoservicio – Akron</small></article>
+      <article class="gc-tcard"><span class="stars">★★★★★</span><p>"Trabajar con GC 2030 fue una decisión acertada. Servicio de primer nivel."</p><strong>Marco Aurelio Chi</strong><small>Director comercial – Ugasa</small></article>
+    </div>
+  </div>
+</section>
+<section id="faq" style="padding:clamp(76px,10vw,140px) 0">
+  <div class="gc-faq" style="width:min(100% - 40px,1180px);margin-inline:auto;display:grid;grid-template-columns:.72fr 1.28fr;gap:48px">
+    <div class="reveal">
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--orange);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em"><span style="width:34px;height:2px;background:var(--orange)"></span> Antes de operar</p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;line-height:.95;letter-spacing:-.05em;margin:0;color:var(--heading);font-size:clamp(34px,4.6vw,60px)">Lo que debes tener claro antes de contratar promotoría.</h2>
+      <p style="color:var(--muted);line-height:1.7;font-size:16px;max-width:520px;margin:18px 0 0">Preguntas clave para evaluar cobertura, costo, evidencia, REPSE y resultados en punto de venta.</p>
+    </div>
+    <div class="gc-faq-list reveal" style="display:grid;gap:12px">
+      <article class="gc-faq-item" style="border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--card-a),var(--card-b));overflow:hidden">
+        <button type="button" class="gc-faq-btn" style="width:100%;display:flex;justify-content:space-between;gap:18px;align-items:center;background:transparent;color:var(--heading);border:0;text-align:left;padding:20px;font-weight:900;font-size:16px">¿Trabajan solo autoservicio?<span style="color:var(--orange);font-size:24px;line-height:1;transition:transform .2s ease">+</span></button>
+        <div class="gc-faq-panel" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease"><p style="overflow:hidden;margin:0;padding:0 20px;color:var(--muted);line-height:1.6">No. GC 2030 comunica cobertura en canal moderno, canal tradicional y tiendas especializadas. La propuesta se define según cadenas, plazas y tipo de producto.</p></div>
+      </article>
+      <article class="gc-faq-item" style="border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--card-a),var(--card-b));overflow:hidden">
+        <button type="button" class="gc-faq-btn" style="width:100%;display:flex;justify-content:space-between;gap:18px;align-items:center;background:transparent;color:var(--heading);border:0;text-align:left;padding:20px;font-weight:900;font-size:16px">¿Cómo se define el costo?<span style="color:var(--orange);font-size:24px;line-height:1;transition:transform .2s ease">+</span></button>
+        <div class="gc-faq-panel" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease"><p style="overflow:hidden;margin:0;padding:0 20px;color:var(--muted);line-height:1.6">Depende del número de tiendas, cobertura geográfica, frecuencia de visita, actividades en punto de venta y desgaste del anaquel.</p></div>
+      </article>
+      <article class="gc-faq-item" style="border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--card-a),var(--card-b));overflow:hidden">
+        <button type="button" class="gc-faq-btn" style="width:100%;display:flex;justify-content:space-between;gap:18px;align-items:center;background:transparent;color:var(--heading);border:0;text-align:left;padding:20px;font-weight:900;font-size:16px">¿Qué evidencia recibe la marca?<span style="color:var(--orange);font-size:24px;line-height:1;transition:transform .2s ease">+</span></button>
+        <div class="gc-faq-panel" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease"><p style="overflow:hidden;margin:0;padding:0 20px;color:var(--muted);line-height:1.6">Evidencia fotográfica, cumplimiento de visitas, información comercial, reportes de precios, competencia, frentes, focos rojos y ajustes de inventario.</p></div>
+      </article>
+      <article class="gc-faq-item" style="border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--card-a),var(--card-b));overflow:hidden">
+        <button type="button" class="gc-faq-btn" style="width:100%;display:flex;justify-content:space-between;gap:18px;align-items:center;background:transparent;color:var(--heading);border:0;text-align:left;padding:20px;font-weight:900;font-size:16px">¿Pueden apoyar a una marca nueva en autoservicio?<span style="color:var(--orange);font-size:24px;line-height:1;transition:transform .2s ease">+</span></button>
+        <div class="gc-faq-panel" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease"><p style="overflow:hidden;margin:0;padding:0 20px;color:var(--muted);line-height:1.6">Sí. El servicio es especialmente útil cuando una marca ya negoció entrada a cadena y necesita ejecución física para asegurar visibilidad y desplazamiento.</p></div>
+      </article>
+      <article class="gc-faq-item" style="border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--card-a),var(--card-b));overflow:hidden">
+        <button type="button" class="gc-faq-btn" style="width:100%;display:flex;justify-content:space-between;gap:18px;align-items:center;background:transparent;color:var(--heading);border:0;text-align:left;padding:20px;font-weight:900;font-size:16px">¿El servicio ayuda a reducir agotados?<span style="color:var(--orange);font-size:24px;line-height:1;transition:transform .2s ease">+</span></button>
+        <div class="gc-faq-panel" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease"><p style="overflow:hidden;margin:0;padding:0 20px;color:var(--muted);line-height:1.6">Sí. El trabajo en campo permite detectar huecos, inventarios incorrectos, producto en bodega, precios ausentes y otros focos rojos que frenan el resurtido.</p></div>
+      </article>
+      <article class="gc-faq-item" style="border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,var(--card-a),var(--card-b));overflow:hidden">
+        <button type="button" class="gc-faq-btn" style="width:100%;display:flex;justify-content:space-between;gap:18px;align-items:center;background:transparent;color:var(--heading);border:0;text-align:left;padding:20px;font-weight:900;font-size:16px">¿Cuentan con REPSE?<span style="color:var(--orange);font-size:24px;line-height:1;transition:transform .2s ease">+</span></button>
+        <div class="gc-faq-panel" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease"><p style="overflow:hidden;margin:0;padding:0 20px;color:var(--muted);line-height:1.6">Sí. GC 2030 cuenta con el REPSE ante la Secretaría del Trabajo para representar marcas de terceros en tiendas de autoservicio.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" style="padding:90px 0 clamp(76px,10vw,140px)">
+  <div class="gc-contact" style="width:min(100% - 40px,1180px);margin-inline:auto;display:grid;grid-template-columns:.86fr 1.14fr;gap:48px;align-items:start">
+    <div class="reveal">
+      <p style="display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;color:var(--orange);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.14em"><span style="width:34px;height:2px;background:var(--orange)"></span> Revisión de negocio</p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;line-height:.95;letter-spacing:-.05em;margin:0;color:var(--heading);font-size:clamp(34px,4.6vw,60px)">Dinos dónde se está perdiendo la venta.</h2>
+      <p style="color:var(--muted);line-height:1.7;font-size:16px;max-width:520px;margin:18px 0 0">Comparte tus cadenas, plazas, SKUs y reto actual. GC 2030 revisará si tu marca necesita cobertura, corrección de inventario, más frentes o monitoreo comercial.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:26px">
+        <span style="display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--chip-bg);padding:10px 12px;border-radius:999px;color:var(--chip-text);font-size:13px;font-weight:700">Revisión comercial</span>
+        <span style="display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--chip-bg);padding:10px 12px;border-radius:999px;color:var(--chip-text);font-size:13px;font-weight:700">Análisis por cadena</span>
+        <span style="display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--chip-bg);padding:10px 12px;border-radius:999px;color:var(--chip-text);font-size:13px;font-weight:700">Venta en anaquel</span>
+      </div>
+    </div>
+    <form class="gc-form reveal" action="gracias.html" style="border:1px solid var(--line);background:linear-gradient(180deg,var(--card-a),var(--card-b));border-radius:26px;box-shadow:var(--shadow);padding:clamp(20px,4vw,34px);display:grid;gap:16px">
+      <input type="hidden" name="caso" value="Revisión de negocio">
+      <div style="display:grid;gap:8px">
+        <label style="color:var(--heading);font-size:14px;font-weight:800">Nombre completo *</label>
+        <input name="nombre" type="text" placeholder="Ej. Mariana López" required style="width:100%;border:1px solid var(--line);background:var(--input-bg);color:var(--text);border-radius:16px;padding:15px 14px;outline:none">
+      </div>
+      <div style="display:grid;gap:8px">
+        <label style="color:var(--heading);font-size:14px;font-weight:800">Empresa *</label>
+        <input name="empresa" type="text" placeholder="Ej. Marca de consumo masivo" required style="width:100%;border:1px solid var(--line);background:var(--input-bg);color:var(--text);border-radius:16px;padding:15px 14px;outline:none">
+      </div>
+      <div class="gc-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="display:grid;gap:8px">
+          <label style="color:var(--heading);font-size:14px;font-weight:800">Correo corporativo *</label>
+          <input name="correo" type="email" placeholder="nombre@empresa.com" required style="width:100%;border:1px solid var(--line);background:var(--input-bg);color:var(--text);border-radius:16px;padding:15px 14px;outline:none">
+        </div>
+        <div style="display:grid;gap:8px">
+          <label style="color:var(--heading);font-size:14px;font-weight:800">WhatsApp *</label>
+          <input name="whatsapp" type="tel" placeholder="+52 55 0000 0000" required style="width:100%;border:1px solid var(--line);background:var(--input-bg);color:var(--text);border-radius:16px;padding:15px 14px;outline:none">
+        </div>
+      </div>
+      <div style="display:grid;gap:8px">
+        <label style="color:var(--heading);font-size:14px;font-weight:800">Reto principal *</label>
+        <select name="necesidad" required style="width:100%;border:1px solid var(--line);background:var(--input-bg);color:var(--text);border-radius:16px;padding:15px 14px;outline:none">
+          <option value="">Selecciona una opción</option>
+          <option>Entrar o crecer en autoservicio</option>
+          <option>Reducir agotados o inventario fantasma</option>
+          <option>Mejorar exhibición y frentes</option>
+          <option>Monitorear ejecución con app y KPI</option>
+          <option>Cambiar de agencia de promotoría</option>
+          <option>Solicitar alcance nacional</option>
+        </select>
+      </div>
+      <div style="display:grid;gap:8px">
+        <label style="color:var(--heading);font-size:14px;font-weight:800">Mensaje opcional</label>
+        <textarea name="mensaje" rows="4" placeholder="Ej. Tenemos presencia en Walmart, Chedraui o Soriana y necesitamos apoyo en anaquel." style="width:100%;border:1px solid var(--line);background:var(--input-bg);color:var(--text);border-radius:16px;padding:15px 14px;outline:none;resize:vertical"></textarea>
+      </div>
+      <label style="display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start;color:var(--muted);font-weight:600;line-height:1.45;font-size:14px">
+        <input type="checkbox" required style="width:18px;height:18px;accent-color:var(--orange);margin-top:2px">
+        <span>Acepto términos y condiciones y autorizo que Gestión Comercial 2030 me contacte para dar seguimiento a mi solicitud.</span>
+      </label>
+      <button type="submit" style="width:100%;margin-top:4px;border:0;min-height:54px;padding:16px 22px;border-radius:999px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--orange),var(--orange-2));box-shadow:0 16px 40px rgba(240,122,0,.3)" style-hover="transform:translateY(-2px)">Solicitar revisión comercial</button>
+    </form>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--line);background:var(--footer-bg);padding:46px 0 22px">
+  <div class="gc-footer-grid" style="width:min(100% - 40px,1180px);margin-inline:auto;display:grid;grid-template-columns:1.2fr .8fr 1fr;gap:28px;align-items:start">
+    <div>
+      <img src="assets/logo-gestion-comercial2030.svg" alt="Gestión Comercial 2030" style="height:56px;width:auto;max-width:210px;object-fit:contain;margin-bottom:14px;filter:var(--brand-filter)">
+      <p style="color:var(--muted);line-height:1.6;margin:0;max-width:300px">Promotoría efectiva para vender más en punto de venta.</p>
+    </div>
+    <nav style="display:grid;gap:10px;color:var(--muted);font-weight:700">
+      <a href="#solucion" style="transition:color .2s" style-hover="color:var(--heading)">Solución</a>
+      <a href="#casos" style="transition:color .2s" style-hover="color:var(--heading)">Casos</a>
+      <a href="#contacto" style="transition:color .2s" style-hover="color:var(--heading)">Formulario</a>
+    </nav>
+    <div style="display:grid;gap:10px;color:var(--muted);font-weight:700">
+      <span style="display:inline-flex;width:max-content;max-width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:var(--chip-bg);color:var(--chip-text);font-size:13px;font-weight:800">Operación con REPSE</span>
+      <span style="display:inline-flex;width:max-content;max-width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:var(--chip-bg);color:var(--chip-text);font-size:13px;font-weight:800">Cobertura nacional</span>
+    </div>
+  </div>
+  <div style="width:min(100% - 40px,1180px);margin-inline:auto;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:34px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted-2);font-size:14px">
+    <span>Gestión Comercial 2030 © 2026 · Todos los derechos reservados.</span>
+    <span>Desarrollado por <a href="https://dinametra.com/" target="_blank" rel="noopener" style="color:var(--heading);font-weight:900">Dinametra.com</a></span>
+  </div>
+</footer>
+
+<a href="https://wa.me/525513258070?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20promotor%C3%ADa%20efectiva%20para%20mi%20marca." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp" style="position:fixed;right:22px;bottom:22px;z-index:45;width:58px;height:58px;border-radius:999px;background:#25d366;color:#072713;display:grid;place-items:center;box-shadow:0 0 0 0 rgba(37,211,102,.58),0 18px 40px rgba(0,0,0,.35);animation:waPulse 1.8s infinite">
+  <svg viewBox="0 0 24 24" aria-hidden="true" style="width:28px;height:28px;display:block">
+    <path d="M19.05 4.94A9.86 9.86 0 0 0 12.03 2C6.58 2 2.16 6.42 2.16 11.87c0 1.74.45 3.44 1.31 4.94L2 22l5.35-1.41a9.83 9.83 0 0 0 4.68 1.2h.01c5.44 0 9.86-4.42 9.86-9.86 0-2.63-1.03-5.11-2.85-6.99Z" fill="currentColor" opacity="0.18"/>
+    <path d="M16.93 14.45c-.27-.14-1.59-.78-1.84-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.21-.59.07-.27-.14-1.15-.42-2.18-1.35-.81-.72-1.36-1.6-1.52-1.87-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.46.09-.18.05-.35-.02-.48-.07-.14-.61-1.48-.84-2.02-.22-.53-.45-.46-.61-.46h-.52c-.18 0-.48.07-.73.35-.25.27-.95.93-.95 2.27s.97 2.63 1.11 2.81c.14.18 1.9 3.03 4.71 4.12 2.82 1.09 2.82.73 3.33.69.5-.05 1.59-.65 1.82-1.28.23-.63.23-1.17.16-1.28-.07-.12-.25-.18-.52-.32Z" fill="currentColor"/>
+  </svg>
+</a></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroVideoUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;,&quot;label&quot;:&quot;URL de tu video de retail (mp4)&quot;},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#f07a00&quot;,&quot;options&quot;:[&quot;#f07a00&quot;,&quot;#2a6fdb&quot;,&quot;#1f8a5b&quot;,&quot;#111827&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Marca&quot;,&quot;label&quot;:&quot;Color de acento&quot;},&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;dark&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tema&quot;,&quot;label&quot;:&quot;Tema inicial&quot;}}">
+class Component extends DCLogic {
+  renderVals(){
+    return {
+      navRef: (this.nav ||= React.createRef()),
+      menuRef: (this.menu ||= React.createRef()),
+      burgerRef: (this.burger ||= React.createRef()),
+      themeIconRef: (this.themeIcon ||= React.createRef()),
+      toggleTheme: () => this.setTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light'),
+      toggleMenu: () => this.toggleMenu(),
+    };
+  }
+  setTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    try{ localStorage.setItem('gc2030-theme', t); }catch(e){}
+    if(this.themeIcon && this.themeIcon.current) this.themeIcon.current.textContent = t === 'light' ? '☀' : '☾';
+  }
+  toggleMenu(){
+    const m = this.menu && this.menu.current; if(!m) return;
+    this.menuOpen = !this.menuOpen;
+    Object.assign(m.style, this.menuOpen ? this.menuOpenStyle() : this.menuClosedStyle());
+  }
+  isMobile(){ return window.matchMedia('(max-width:820px)').matches; }
+  menuOpenStyle(){ return { opacity:'1', pointerEvents:'auto', transform:'none' }; }
+  menuClosedStyle(){ return { opacity:'0', pointerEvents:'none', transform:'translateY(-10px)' }; }
+  applyResponsive(){
+    const burger = this.burger && this.burger.current;
+    const m = this.menu && this.menu.current;
+    if(!m || !burger) return;
+    if(this.isMobile()){
+      burger.style.display='flex';
+      Object.assign(m.style,{position:'fixed',top:'74px',left:'16px',right:'16px',display:'grid',gap:'8px',background:'var(--nav-solid-bg)',backdropFilter:'blur(18px)',border:'1px solid var(--line)',borderRadius:'22px',padding:'14px',boxShadow:'var(--shadow)',transition:'.22s ease'}, this.menuOpen?this.menuOpenStyle():this.menuClosedStyle());
+      m.querySelectorAll('a').forEach(a=>{a.style.color='var(--text)';a.style.padding='12px';a.style.borderRadius='14px';});
+    } else {
+      burger.style.display='none';
+      m.style.cssText='display:flex;align-items:center;gap:22px;font-size:14px;font-weight:700';
+      m.querySelectorAll('a.gc-navlink').forEach(a=>{a.style.color='';});
+    }
+  }
+  componentDidMount(){
+    // Accent color override
+    const accent = this.props.accentColor;
+    if(accent){
+      const r = document.documentElement.style;
+      r.setProperty('--orange', accent);
+      try{ r.setProperty('--orange-2', 'color-mix(in oklch, '+accent+', white 22%)'); }catch(e){ r.setProperty('--orange-2', accent); }
+    }
+    // Custom hero video
+    const url = this.props.heroVideoUrl;
+    if(url){
+      const v = document.querySelector('.gc-hero-video');
+      if(v){ v.innerHTML=''; v.src=url; v.load(); const p=v.play(); if(p&&p.catch) p.catch(()=>{}); }
+    }
+    let saved = this.props.defaultTheme || 'dark';
+    try{ saved = localStorage.getItem('gc2030-theme') || saved; }catch(e){}
+    this.setTheme(saved);
+    this.menuOpen=false;
+    this.applyResponsive();
+    this._onResize=()=>this.applyResponsive();
+    window.addEventListener('resize',this._onResize);
+    // navbar solid on scroll
+    const nav=this.nav && this.nav.current;
+    const onScroll=()=>{ if(nav) nav.classList.toggle('solid', window.scrollY>20); };
+    onScroll();
+    window.addEventListener('scroll',onScroll,{passive:true});
+    this._onScroll=onScroll;
+    // close mobile menu on link click
+    if(this.menu && this.menu.current){
+      this.menu.current.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ if(this.isMobile()){ this.menuOpen=false; Object.assign(this.menu.current.style,this.menuClosedStyle()); }}));
+    }
+    // reveal on scroll
+    const items=document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window && items.length){
+      const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');obs.unobserve(e.target);}});},{threshold:.14});
+      items.forEach(i=>obs.observe(i));
+    } else { items.forEach(i=>i.classList.add('in-view')); }
+    this.wireInteractions();
+  }
+  wireInteractions(){
+    const root = document;
+    // Tabs
+    const tabBtns = root.querySelectorAll('.gc-tab-btn');
+    const panels = root.querySelectorAll('.gc-tab-panel');
+    tabBtns.forEach(btn=>btn.addEventListener('click',()=>{
+      const id = btn.dataset.tab;
+      tabBtns.forEach(b=>{
+        const on = b===btn;
+        b.style.background = on ? 'var(--pill-active-bg)' : 'var(--chip-bg)';
+        b.style.color = on ? 'var(--pill-active-text)' : 'var(--muted)';
+      });
+      panels.forEach(p=>{ p.style.display = p.dataset.panel===id ? 'grid' : 'none'; });
+    }));
+    // FAQ accordion
+    root.querySelectorAll('.gc-faq-item').forEach(item=>{
+      const btn = item.querySelector('.gc-faq-btn');
+      const panel = item.querySelector('.gc-faq-panel');
+      const p = panel.querySelector('p');
+      const icon = btn.querySelector('span');
+      btn.addEventListener('click',()=>{
+        const open = item.getAttribute('data-open')==='1';
+        if(open){ item.removeAttribute('data-open'); panel.style.gridTemplateRows='0fr'; p.style.paddingBottom='0'; icon.style.transform='none'; }
+        else { item.setAttribute('data-open','1'); panel.style.gridTemplateRows='1fr'; p.style.paddingBottom='20px'; icon.style.transform='rotate(45deg)'; }
+      });
+    });
+    // Counters
+    const counters = root.querySelectorAll('[data-count]');
+    const animate = (el)=>{
+      const end = Number(el.dataset.count||0);
+      const suffix = el.dataset.suffix||'';
+      const start = performance.now();
+      const step=(now)=>{
+        const prog = Math.min((now-start)/1200,1);
+        el.textContent = Math.floor(prog*end).toLocaleString('es-MX') + (prog>=1?suffix:'');
+        if(prog<1) requestAnimationFrame(step); else el.textContent = end.toLocaleString('es-MX')+suffix;
+      };
+      requestAnimationFrame(step);
+    };
+    if('IntersectionObserver' in window && counters.length){
+      const co=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){animate(e.target);co.unobserve(e.target);}});},{threshold:.4});
+      counters.forEach(c=>co.observe(c));
+    } else { counters.forEach(animate); }
+    // Case CTA -> prefill form
+    root.querySelectorAll('.gc-case').forEach(link=>link.addEventListener('click',()=>{
+      const val = link.dataset.case;
+      const hidden = root.querySelector('.gc-form input[name="caso"]');
+      if(hidden) hidden.value = val;
+      const sel = root.querySelector('.gc-form select[name="necesidad"]');
+      const map = {'Entrada a cadena':'Entrar o crecer en autoservicio','Reducir agotados':'Reducir agotados o inventario fantasma','Mejorar exhibición':'Mejorar exhibición y frentes','Monitoreo con app':'Monitorear ejecución con app y KPI','Cambio de agencia':'Cambiar de agencia de promotoría'};
+      if(sel && map[val]) sel.value = map[val];
+    }));
+    // Form submit
+    const form = root.querySelector('.gc-form');
+    if(form){
+      form.addEventListener('submit',(ev)=>{
+        if(!form.checkValidity()){ ev.preventDefault(); form.reportValidity(); return; }
+        try{ sessionStorage.setItem('gc2030Lead', JSON.stringify({...Object.fromEntries(new FormData(form).entries()), createdAt:new Date().toISOString()})); }catch(e){}
+      });
+    }
+  }
+  componentWillUnmount(){
+    window.removeEventListener('resize',this._onResize);
+    window.removeEventListener('scroll',this._onScroll);
+  }
+}
+</script>
 </body>
 </html>
